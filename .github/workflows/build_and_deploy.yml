@@ -31,3 +31,4 @@ jobs:
     needs: setup_environment
     steps:
     - run: echo ${{needs.setup_environment.outputs.env_name}}
+    - run: echo ${{secrets.NAME_OF_ENVIRONMENT}}
