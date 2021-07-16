@@ -15,7 +15,7 @@ jobs:
     name: Setup environment
     runs-on: ubuntu-latest
     outputs:
-      env_name: ${{ steps.outputs.env }}
+      env_name: ${{ steps.outputs.set_env.env || steps.outputs.set_env1.env  }}
     steps:
       - id: set_env
         if: ${{ github.ref == 'refs/heads/develop' }}
