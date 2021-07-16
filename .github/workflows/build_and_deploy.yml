@@ -1,0 +1,20 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - TEST-*
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - TEST-*
+      - main
+jobs:
+  build:
+    name: TEST
+    runs-on: ubuntu-latest
+      
+    steps:
+       - name: Print ENV name
+         run: echo "${{ secrets.NAME_OF_ENVIRONMENT }}"
