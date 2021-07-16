@@ -17,4 +17,4 @@ jobs:
       
     steps:
        - name: Print ENV name
-         run: echo "${{ secrets.NAME_OF_ENVIRONMENT }}"
+         run: echo "environment secret ${{ secrets.NAME_OF_ENVIRONMENT }}"
