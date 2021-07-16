@@ -31,5 +31,5 @@ jobs:
     steps:
        - name: Print ENV name
          run: |
-          echo "SETUP UP ${{needs.setup_env.outputs.env_name}}";
+          echo "SETUP UP ${{ needs.setup_env.outputs.env_name }}";
           echo "environment secret ${{ secrets.NAME_OF_ENVIRONMENT }}"
