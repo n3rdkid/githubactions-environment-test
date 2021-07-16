@@ -19,9 +19,7 @@ jobs:
     steps:
       - id: set_env
         run: |
-            if [[ ${{ github.ref == 'refs/heads/main'}} ]]; then echo "::set-output name=env::PROD'"
-            else "::set-output name=env::DEV'"
-            fi
+            if [[ ${{ github.ref == 'refs/heads/main'}} ]]; then echo "::set-output name=env::PROD'" else "::set-output name=env::DEV'" fi
       - name: Get ENV
         run: echo "The selected environment is ${{ steps.set_env.outputs.env }}"
   build:
