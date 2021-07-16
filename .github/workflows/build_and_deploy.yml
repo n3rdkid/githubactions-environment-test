@@ -28,7 +28,6 @@ jobs:
     name: TEST
     runs-on: ubuntu-latest
     needs: setup_env
-    environment : ${{needs.setup_env.outputs.env_name}}
     steps:
        - name: Print ENV name
          run: |
