@@ -15,15 +15,14 @@ jobs:
     name: Setup environment
     runs-on: ubuntu-latest
     outputs:
-      env_name: ${{ steps.outputs.set_env.env || steps.outputs.set_env1.env  }}
+      env_name: ${{ steps.outputs.set_env.env}}
     steps:
       - id: set_env
-        if: ${{ github.ref == 'refs/heads/develop' }}
-        run: echo "::set-output name=env::DEV"
-      - id: set_env1
-        if: ${{ github.ref == 'refs/heads/main' }}
-        run: echo "::set-output name=env::PROD"
-
+        run: |
+          if [[ ${{ github.ref == 'refs/heads/main']]; then
+            echo "::set-output name=env::PROD"
+          else 
+            echo "::set-output name=env::DEV"
   build:
     name: TEST
     runs-on: ubuntu-latest
