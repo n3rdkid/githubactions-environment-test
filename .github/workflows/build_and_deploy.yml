@@ -19,10 +19,10 @@ jobs:
     steps:
       - id: set_env
         run: |
-          if [[ ${{ github.ref == 'refs/heads/main']]; then
-            echo "::set-output name=env::PROD"
-          else 
-            echo "::set-output name=env::DEV"
+            if [[ ${{ github.ref == 'refs/heads/main']]; then
+              echo "::set-output name=env::PROD"
+            else 
+              echo "::set-output name=env::DEV"
   build:
     name: TEST
     runs-on: ubuntu-latest
