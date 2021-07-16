@@ -38,11 +38,17 @@ jobs:
     runs-on: ubuntu-latest
     # Map a step output to a job output
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
-      output2: ${{ steps.step2.outputs.test }}
+      output1: ${{ steps.step1.outputs.env }}
+      output2: ${{ steps.step2.outputs.env }}
     steps:
     - id: step1
-      run: echo "::set-output name=test::hello"
+      run: |
+            if [[ ${{ github.ref == 'refs/heads/main'}} ]]
+            then
+              echo "::set-output name=env::PROD'"
+            else
+              echo "::set-output name=env::DEV'"
+            fi
     - id: step2
       run: echo "::set-output name=test::world"
   job2:
