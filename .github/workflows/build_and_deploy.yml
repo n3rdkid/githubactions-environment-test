@@ -20,7 +20,7 @@ jobs:
       - id: set_env
         if: ${{ github.ref == 'refs/heads/develop' }}
         run: echo "::set-output name=env::DEV"
-      - id: set_env
+      - id: set_env1
         if: ${{ github.ref == 'refs/heads/main' }}
         run: echo "::set-output name=env::PROD"
 
