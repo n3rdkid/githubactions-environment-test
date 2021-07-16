@@ -43,7 +43,7 @@ jobs:
     steps:
     - id: step1
       run: |
-            if [[ ${{ github.ref == 'refs/heads/main'}} ]]
+            if [ ${{ github.ref == 'refs/heads/main'}} ]
             then
               echo "::set-output name=env::PROD"
             else
