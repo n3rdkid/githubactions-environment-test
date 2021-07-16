@@ -43,12 +43,11 @@ jobs:
     steps:
     - id: step1
       run: |
-            if [ ${{ github.ref == 'refs/heads/main'}} ]
-            then
-              echo "::set-output name=env::PROD"
-            else
-              echo "::set-output name=env::DEV"
-            fi
+        if [ ${{ github.ref == 'refs/heads/main'}} ]; then
+          echo "::set-output name=env::PROD"
+        else
+          echo "::set-output name=env::DEV"
+        fi
     - id: step2
       run: echo "::set-output name=test::world"
   job2:
