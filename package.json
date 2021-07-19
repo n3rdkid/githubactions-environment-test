@@ -1,0 +1,19 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "dependencies": {
+    "next": "11.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "scripts": {
+    "bootstrap": "yarn install; lerna bootstrap;",
+    "local:start": "lerna run --parallel dev",
+    "local:consumer": "lerna run --scope consumer --stream dev",
+    "local:admin": "lerna run --scope admin --stream dev"
+  }
+  }
+
