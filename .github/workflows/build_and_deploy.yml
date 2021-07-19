@@ -11,6 +11,7 @@ on:
     branches:
       - develop
       - TEST-*
+      
       - main
 jobs:
   setup_environment:
