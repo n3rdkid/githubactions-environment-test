@@ -5,6 +5,8 @@ on:
       - TEST-*
       - develop
       - main
+    tags:
+      - v*
   pull_request:
     branches:
       - develop
@@ -42,3 +44,5 @@ jobs:
     steps:
     - run: echo Inside deploy ${{needs.setup_environment.outputs.env_name}}
     - run: echo ${{secrets.NAME_OF_ENVIRONMENT}}
+    - run: echo Event name ${{ github.event_name }}
+    - run: echo ${{github.ref}} 
