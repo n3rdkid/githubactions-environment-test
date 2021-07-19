@@ -5,6 +5,8 @@ on:
       - TEST-*
       - develop
       - main
+    tags:
+      - v*
   pull_request:
     branches:
       - develop
@@ -33,3 +35,15 @@ jobs:
     steps:
     - run: echo ${{needs.setup_environment.outputs.env_name}}
     - run: echo ${{secrets.NAME_OF_ENVIRONMENT}}
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) }}
+    needs: 
+    - setup_environment
+    - build
+    environment: ${{needs.setup_environment.outputs.env_name}}
+    steps:
+    - run: echo Inside deploy ${{needs.setup_environment.outputs.env_name}}
+    - run: echo ${{secrets.NAME_OF_ENVIRONMENT}}
+    - run: echo Event name ${{ github.event_name }}
+    - run: echo ${{github.ref}} 
