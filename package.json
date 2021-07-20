@@ -17,7 +17,7 @@
     "local:admin": "lerna run --scope admin --stream dev",
     "build:admin": "lerna run --scope admin build",
     "build:consumer": "lerna run --scope consumer build",
-    "pre-deploy:company": "rimraf public &&  copyfiles -u 3 packages/company/public/* packages/company/public/**/* packages/company/public/**/**/* public",
+    "pre-deploy:consumer": "rimraf public &&  copyfiles -u 3 packages/consumer/public/* packages/consumer/public/**/* packages/consumer/public/**/**/* public",
     "pre-deploy:admin": "rimraf public &&  copyfiles -u 3 packages/admin/public/* packages/admin/public/**/* packages/admin/public/**/**/* public",
     "build:gae:consumer": "rimraf build && yarn run build:consumer && yarn run pre-deploy:consumer",
     "build:gae:admin": "rimraf build && yarn run build:admin && yarn run pre-deploy:admin"
