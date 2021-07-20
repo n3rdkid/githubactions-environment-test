@@ -74,7 +74,7 @@ jobs:
       - name: Build the Admin package
         if: steps.filter.outputs.admin == 'true'
         run: yarn build:gae:admin
-        
+
       - name: Setup Cloud SDK
         if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) }}
         uses: google-github-actions/setup-gcloud@v0.2.0
@@ -83,5 +83,5 @@ jobs:
           service_account_key: ${{ secrets.GCP_SERVICE_KEY }}
 
       - name: Deploy consumer package to Google App Engine
-        if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ steps.filter.outputs.consumer == 'true' && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) }}
         run: gcloud app deploy app_consumer.yaml --quiet --project ${{secrets.GCP_PROJECT_ID}}
