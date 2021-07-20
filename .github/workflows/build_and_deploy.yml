@@ -70,7 +70,7 @@ jobs:
         run: |
           echo "env" > .env
       - name: Build the consumer package
-        if: steps.package_filter.outputs.consumer == 'true' || startsWith(github.ref, 'refs/tags/v')
+        if: steps.package_filter.outputs.consumer == 'true' || startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
         run: yarn build:gae:consumer
 
       - name: Setup Cloud SDK
