@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "lerna": "^4.0.0"
   },
   "dependencies": {
@@ -13,7 +14,12 @@
     "bootstrap": "yarn install; lerna bootstrap;",
     "local:start": "lerna run --parallel dev",
     "local:consumer": "lerna run --scope consumer --stream dev",
-    "local:admin": "lerna run --scope admin --stream dev"
+    "local:admin": "lerna run --scope admin --stream dev",
+    "build:admin": "lerna run --scope admin build",
+    "build:consumer": "lerna run --scope consumer build",
+    "pre-deploy:company": "rimraf public &&  copyfiles -u 3 packages/company/public/* packages/company/public/**/* packages/company/public/**/**/* public",
+    "pre-deploy:admin": "rimraf public &&  copyfiles -u 3 packages/admin/public/* packages/admin/public/**/* packages/admin/public/**/**/* public",
+    "build:gae:consumer": "rimraf build && yarn run build:consumer && yarn run pre-deploy:consumer",
+    "build:gae:admin": "rimraf build && yarn run build:admin && yarn run pre-deploy:admin"
   }
-  }
-
+}
