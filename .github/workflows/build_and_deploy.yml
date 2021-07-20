@@ -54,7 +54,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
 
-      - name: Check dependencies in cache 
+      - name: Check dependencies in cache
         id: yarn-cache 
         uses: actions/cache@v2
         with:
@@ -70,7 +70,7 @@ jobs:
         run: |
           echo "env" > .env
       - name: Build the consumer package
-        if: steps.package_filter.outputs.consumer == 'true'
+        if: steps.package_filter.outputs.consumer == 'true' || startsWith(github.ref, 'refs/tags/v')
         run: yarn build:gae:consumer
 
       - name: Setup Cloud SDK
@@ -83,7 +83,7 @@ jobs:
         
 
       - name: Deploy consumer package to Google App Engine
-        if: ${{ steps.package_filter.outputs.consumer == 'true' && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) }}
+        if: ${{ (steps.package_filter.outputs.consumer == 'true'|| startsWith(github.ref, 'refs/tags/v')) && github.event_name == 'push' && (github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/v')) }}
         # run: gcloud app deploy app_consumer.yaml --quiet --project ${{secrets.GCP_PROJECT_ID}}
         run: echo "Deploy consumer package to App engine"
       
